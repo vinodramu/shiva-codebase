@@ -20,6 +20,9 @@ export class SearchService {
     }
 
     async updateDocument(index: string, id: string, doc: any): Promise<any> {
+        if (!index || !id || !doc) {
+            throw new Error('Missing required parameters for updateDocument.');
+        }
         return this.elasticsearchService.update({
             index,
             id,
